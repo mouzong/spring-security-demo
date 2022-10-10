@@ -27,8 +27,8 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests() //authorize every request fro client
-                .antMatchers("/", "index", "/css/*", "/js/*") // permit users to access these resources with or without authorizations
-                .permitAll()// permit the access to all of these resources
+                .antMatchers("/", "index", "/css/*", "/js/*").permitAll() // permit users to access these resources with or without authorizations// permit the access to all of these resources
+                .antMatchers("/api/**").hasRole(STUDENT.name()) // restricting access on the "/api/**" resource, only to the STUDENT_ROLE.
                 .anyRequest()// Allow any request to enter the server
                 .authenticated() // request must be authenticated
                 .and()
